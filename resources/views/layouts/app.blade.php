@@ -9,11 +9,10 @@
 
     <title>{{ config('app.name', 'Pet4U') }}</title>
 
-    <!-- Fonts -->
-   
-    
+    <!-- Fonts -->    
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('css/items.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/donation-records.css') }}">
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
@@ -43,17 +42,23 @@
                             <li class="nav-item active">
                                 <a class="nav-link home" href="{{ url('/') }}">{{ __('Home') }}</a>
                             </li>
+                            <!--
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('showAdp') }}">{{ __('Show Adoptable Pet') }}</a>
                             </li>
+                            -->
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">Donation</a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item active" href="{{ route('donate') }}">{{ __('Donate') }}</a>
+                                    <a class="dropdown-item active" href="{{ route('donate.form') }}">{{ __('Donate') }}</a>
                         @guest
                         @else        
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">{{ __('Donate Records') }}</a>
+                                    <a class="dropdown-item" href="{{ route('donations.records') }}">{{ __('Donate Records') }}</a>
+                                    @if(auth()->user()->role === 'admin')
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="{{ route('admin.donationRecords') }}">{{ __('Admin Donate Records') }}</a>
+                                    @endif
                                 </div>
                             </li>
 
@@ -62,12 +67,14 @@
                                 Manage Pet Information
                                 </a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item active" href="ShowAdoptablePet.html">Pet for Adoption</a>
-                                    <a class="dropdown-item" href="AdptAppSub.html">Adoption Application Submitted</a>
-                                    <a class="dropdown-item" href="MyPet.html">My Pet</a>
-                                <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item active" href="{{ route('pets.create') }}">{{ __('Add Pet Information') }}</a>
-                                    <a class="dropdown-item" href="PetInfoRecords.html">Pet Information Added</a>
+                                    <a class="dropdown-item active" href="MyPet.html">{{ __('My Pet') }}</a>
+                                    <a class="dropdown-item" href="{{ route('adoptions.application') }}">{{ __('Adoption Applications') }}</a>
+                                    <a class="dropdown-item" href="{{ route('pets.myAdded') }}">{{ __('Pets Added') }}</a>
+                                    @if(auth()->user()->role === 'admin')
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="{{ route('admin.pets.verification') }}">{{ __('New Pet Verification') }}</a>
+                                        <a class="dropdown-item" href="{{ route('admin.adoptions') }}">{{ __('Adoption Management') }}</a>
+                                    @endif
                                 </div>
                             </li>
                         @endguest
@@ -110,6 +117,10 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item active" href="{{ route('showProfile') }}">
                                         {{ __('Profile') }}
+                                    </a>
+                                    
+                                    <a class="dropdown-item" href="{{ route('pets.myAdded') }}">
+                                        {{ __('Pet Added') }}
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"

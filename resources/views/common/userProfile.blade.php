@@ -125,9 +125,48 @@
                                   openModal1();
                               </script>
                           @endif
+                        </form>  
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="card-body profile-card">
+                    @if(session('successUpdateAddress'))
+                      <div class="alert alert-success">
+                        {{ session('successUpdateAddress') }}
+                      </div>
+                    @endif
 
-                         
+                    @if($errors->has('address'))
+                      <div class="alert alert-danger">
+                        {{ $errors->first('address') }}
+                      </div>
+                    @endif
 
+                    <div style="margin-bottom:10px;">
+                      <span class="pet-title h5" style="padding-bottom: 13px;">
+                        Address: <br> {{ Auth::user()->address}} 
+                      </span>
+                    </div>
+                    <button class="btn btn-danger btn-xs" style="float: right;" type="button" onclick="openModal2()">Update</button>
+
+                    <div id="updateAddressModal" style="display: none;">
+                      <div class="modal-content">
+                          <span onclick="closeModal2()" class="close">&times;</span>
+                          <h5>Update Address</h5>
+                          <form action="{{ route('profile.updateAddress') }}" method="POST">
+                              @csrf
+                              <div class="form-group">
+                                  <label for="address" class="h6">New Address:</label>
+                                  <input type="text" 
+                                         id="address" 
+                                         name="address" 
+                                         class="form-control" 
+                                         value="{{ old('address', Auth::user()->address) }}"
+                                         required>
+                              </div>
+                              <button type="submit" class="btn btn-danger btn-xs">Update</button>
+                          </form>
                       </div>
                     </div>
                   </div>
@@ -142,3 +181,4 @@
     <br>
 
 @endsection
+

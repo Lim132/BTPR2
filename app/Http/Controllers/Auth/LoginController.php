@@ -87,7 +87,7 @@ class LoginController extends Controller
     {
         // Redirect based on the user's identity
         if ($user->role === 'admin') {
-            return redirect()->route('pets.index'); // Adjust route as needed
+            return redirect()->route('admin.pets.verification'); // Adjust route as needed
         }
 
         return redirect()->route('showAdp'); // Adjust route as needed

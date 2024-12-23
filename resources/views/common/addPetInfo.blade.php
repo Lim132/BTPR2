@@ -21,7 +21,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h4>{{ __('Add Pet Information') }}</h4>
+            <span class="text-orange h4">{{ __('Add Pet Information') }}</span>
         </div>
         <div class="card-body">
             <form method="POST" action="{{ route('pets.store') }}" enctype="multipart/form-data">
@@ -253,7 +253,8 @@
         const breeds = {
             dog: ['Labrador', 'Golden Retriever', 'Bulldog', 'Other'],
             cat: ['Persian', 'Siamese', 'Maine Coon', 'Other'],
-            bird: ['Parrot', 'Canary', 'Finch', 'Other']
+            bird: ['Parrot', 'Canary', 'Finch', 'Other'],
+            other: ['Other']
         };
 
         speciesSelect.addEventListener('change', function() {

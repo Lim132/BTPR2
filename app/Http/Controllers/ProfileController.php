@@ -81,5 +81,16 @@ class ProfileController extends Controller
         return back()->with('successChangePassword', 'Password updated successfully.');
     }
 
+    public function updateAddress(Request $request)
+    {
+        $request->validate([
+            'address' => 'required|string|max:255',
+        ]);
+        $user = Auth::user();
+        $user->address = $request->address;
+        $user->save();
+        return back()->with('successUpdateAddress', 'Address updated successfully.');
+    }
+
 
 }

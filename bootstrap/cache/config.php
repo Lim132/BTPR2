@@ -6,7 +6,7 @@
     'debug' => true,
     'url' => 'http://localhost',
     'asset_url' => NULL,
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Kuala_Lumpur',
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
@@ -40,6 +40,7 @@
       23 => 'App\\Providers\\AuthServiceProvider',
       24 => 'App\\Providers\\EventServiceProvider',
       25 => 'App\\Providers\\RouteServiceProvider',
+      26 => 'Barryvdh\\DomPDF\\ServiceProvider',
     ),
     'aliases' => 
     array (
@@ -82,6 +83,7 @@
       'Validator' => 'Illuminate\\Support\\Facades\\Validator',
       'View' => 'Illuminate\\Support\\Facades\\View',
       'Vite' => 'Illuminate\\Support\\Facades\\Vite',
+      'PDF' => 'Barryvdh\\DomPDF\\Facade',
     ),
   ),
   'auth' => 
@@ -349,6 +351,128 @@
         'port' => '6379',
         'database' => '1',
       ),
+    ),
+  ),
+  'excel' => 
+  array (
+    'exports' => 
+    array (
+      'chunk_size' => 1000,
+      'pre_calculate_formulas' => false,
+      'strict_null_comparison' => false,
+      'csv' => 
+      array (
+        'delimiter' => ',',
+        'enclosure' => '"',
+        'line_ending' => '
+',
+        'use_bom' => false,
+        'include_separator_line' => false,
+        'excel_compatibility' => false,
+        'output_encoding' => '',
+        'test_auto_detect' => true,
+      ),
+      'properties' => 
+      array (
+        'creator' => '',
+        'lastModifiedBy' => '',
+        'title' => '',
+        'description' => '',
+        'subject' => '',
+        'keywords' => '',
+        'category' => '',
+        'manager' => '',
+        'company' => '',
+      ),
+    ),
+    'imports' => 
+    array (
+      'read_only' => true,
+      'ignore_empty' => false,
+      'heading_row' => 
+      array (
+        'formatter' => 'slug',
+      ),
+      'csv' => 
+      array (
+        'delimiter' => NULL,
+        'enclosure' => '"',
+        'escape_character' => '\\',
+        'contiguous' => false,
+        'input_encoding' => 'guess',
+      ),
+      'properties' => 
+      array (
+        'creator' => '',
+        'lastModifiedBy' => '',
+        'title' => '',
+        'description' => '',
+        'subject' => '',
+        'keywords' => '',
+        'category' => '',
+        'manager' => '',
+        'company' => '',
+      ),
+      'cells' => 
+      array (
+        'middleware' => 
+        array (
+        ),
+      ),
+    ),
+    'extension_detector' => 
+    array (
+      'xlsx' => 'Xlsx',
+      'xlsm' => 'Xlsx',
+      'xltx' => 'Xlsx',
+      'xltm' => 'Xlsx',
+      'xls' => 'Xls',
+      'xlt' => 'Xls',
+      'ods' => 'Ods',
+      'ots' => 'Ods',
+      'slk' => 'Slk',
+      'xml' => 'Xml',
+      'gnumeric' => 'Gnumeric',
+      'htm' => 'Html',
+      'html' => 'Html',
+      'csv' => 'Csv',
+      'tsv' => 'Csv',
+      'pdf' => 'Dompdf',
+    ),
+    'value_binder' => 
+    array (
+      'default' => 'Maatwebsite\\Excel\\DefaultValueBinder',
+    ),
+    'cache' => 
+    array (
+      'driver' => 'memory',
+      'batch' => 
+      array (
+        'memory_limit' => 60000,
+      ),
+      'illuminate' => 
+      array (
+        'store' => NULL,
+      ),
+      'default_ttl' => 10800,
+    ),
+    'transactions' => 
+    array (
+      'handler' => 'db',
+      'db' => 
+      array (
+        'connection' => NULL,
+      ),
+    ),
+    'temporary_files' => 
+    array (
+      'local_path' => 'D:\\CourseTools\\Laragon\\laragon\\www\\BTPR2\\storage\\framework/cache/laravel-excel',
+      'local_permissions' => 
+      array (
+      ),
+      'remote_disk' => NULL,
+      'remote_prefix' => NULL,
+      'force_resync_remote' => NULL,
     ),
   ),
   'filesystems' => 
@@ -638,6 +762,11 @@
       'secret' => '',
       'region' => 'us-east-1',
     ),
+    'stripe' => 
+    array (
+      'secret' => 'sk_test_51OJpUmDLfWNxVxEmZITfhLoPHr64tv9Scs5viKOBQ8xMNZtTYBcKQSSHufbLqb3dZw4yWxafzQ39LPmoZLop9eJn00ZBnZmXHN',
+      'key' => 'pk_test_51OJpUmDLfWNxVxEm0CVGVMU4NnpBcFtqMoavxpcioMWvDTgT3aJqJxfrGkzsZFso3sLnDsyTSmuZT2bKh11ot7Fu00He6diG2X',
+    ),
   ),
   'session' => 
   array (
@@ -668,6 +797,55 @@
       0 => 'D:\\CourseTools\\Laragon\\laragon\\www\\BTPR2\\resources\\views',
     ),
     'compiled' => 'D:\\CourseTools\\Laragon\\laragon\\www\\BTPR2\\storage\\framework\\views',
+  ),
+  'dompdf' => 
+  array (
+    'show_warnings' => false,
+    'public_path' => NULL,
+    'convert_entities' => true,
+    'options' => 
+    array (
+      'font_dir' => 'D:\\CourseTools\\Laragon\\laragon\\www\\BTPR2\\storage\\fonts',
+      'font_cache' => 'D:\\CourseTools\\Laragon\\laragon\\www\\BTPR2\\storage\\fonts',
+      'temp_dir' => 'C:\\Users\\acer\\AppData\\Local\\Temp',
+      'chroot' => 'D:\\CourseTools\\Laragon\\laragon\\www\\BTPR2',
+      'allowed_protocols' => 
+      array (
+        'file://' => 
+        array (
+          'rules' => 
+          array (
+          ),
+        ),
+        'http://' => 
+        array (
+          'rules' => 
+          array (
+          ),
+        ),
+        'https://' => 
+        array (
+          'rules' => 
+          array (
+          ),
+        ),
+      ),
+      'artifactPathValidation' => NULL,
+      'log_output_file' => NULL,
+      'enable_font_subsetting' => false,
+      'pdf_backend' => 'CPDF',
+      'default_media_type' => 'screen',
+      'default_paper_size' => 'a4',
+      'default_paper_orientation' => 'portrait',
+      'default_font' => 'serif',
+      'dpi' => 96,
+      'enable_php' => false,
+      'enable_javascript' => true,
+      'enable_remote' => false,
+      'allowed_remote_hosts' => NULL,
+      'font_height_ratio' => 1.1,
+      'enable_html5_parser' => true,
+    ),
   ),
   'flare' => 
   array (

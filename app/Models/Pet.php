@@ -41,4 +41,10 @@ class Pet extends Model
     {
         return $this->belongsTo(User::class, 'addedBy');
     }
+
+    // 添加与 Adoption 的关系
+    public function adoptions()
+    {
+        return $this->hasMany(Adoption::class);
+    }
 }

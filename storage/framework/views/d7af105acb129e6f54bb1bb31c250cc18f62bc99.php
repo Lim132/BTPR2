@@ -148,9 +148,50 @@ unset($__errorArgs, $__bag); ?>
                                   openModal1();
                               </script>
                           <?php endif; ?>
+                        </form>  
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="card-body profile-card">
+                    <?php if(session('successUpdateAddress')): ?>
+                      <div class="alert alert-success">
+                        <?php echo e(session('successUpdateAddress')); ?>
 
-                         
+                      </div>
+                    <?php endif; ?>
 
+                    <?php if($errors->has('address')): ?>
+                      <div class="alert alert-danger">
+                        <?php echo e($errors->first('address')); ?>
+
+                      </div>
+                    <?php endif; ?>
+
+                    <div style="margin-bottom:10px;">
+                      <span class="pet-title h5" style="padding-bottom: 13px;">
+                        Address: <br> <?php echo e(Auth::user()->address); ?> 
+                      </span>
+                    </div>
+                    <button class="btn btn-danger btn-xs" style="float: right;" type="button" onclick="openModal2()">Update</button>
+
+                    <div id="updateAddressModal" style="display: none;">
+                      <div class="modal-content">
+                          <span onclick="closeModal2()" class="close">&times;</span>
+                          <h5>Update Address</h5>
+                          <form action="<?php echo e(route('profile.updateAddress')); ?>" method="POST">
+                              <?php echo csrf_field(); ?>
+                              <div class="form-group">
+                                  <label for="address" class="h6">New Address:</label>
+                                  <input type="text" 
+                                         id="address" 
+                                         name="address" 
+                                         class="form-control" 
+                                         value="<?php echo e(old('address', Auth::user()->address)); ?>"
+                                         required>
+                              </div>
+                              <button type="submit" class="btn btn-danger btn-xs">Update</button>
+                          </form>
                       </div>
                     </div>
                   </div>
@@ -165,4 +206,6 @@ unset($__errorArgs, $__bag); ?>
     <br>
 
 <?php $__env->stopSection(); ?>
+
+
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\CourseTools\Laragon\laragon\www\BTPR2\resources\views/common/userProfile.blade.php ENDPATH**/ ?>

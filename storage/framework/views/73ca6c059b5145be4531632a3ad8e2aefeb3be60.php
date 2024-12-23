@@ -9,11 +9,10 @@
 
     <title><?php echo e(config('app.name', 'Pet4U')); ?></title>
 
-    <!-- Fonts -->
-   
-    
+    <!-- Fonts -->    
     <link rel="stylesheet" href="<?php echo e(asset('css/footer.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('css/items.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('css/donation-records.css')); ?>">
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo e(asset('css/header.css')); ?>">
@@ -43,17 +42,23 @@
                             <li class="nav-item active">
                                 <a class="nav-link home" href="<?php echo e(url('/')); ?>"><?php echo e(__('Home')); ?></a>
                             </li>
+                            <!--
                             <li class="nav-item">
                                 <a class="nav-link" href="<?php echo e(route('showAdp')); ?>"><?php echo e(__('Show Adoptable Pet')); ?></a>
                             </li>
+                            -->
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">Donation</a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item active" href="<?php echo e(route('donate')); ?>"><?php echo e(__('Donate')); ?></a>
+                                    <a class="dropdown-item active" href="<?php echo e(route('donate.form')); ?>"><?php echo e(__('Donate')); ?></a>
                         <?php if(auth()->guard()->guest()): ?>
                         <?php else: ?>        
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#"><?php echo e(__('Donate Records')); ?></a>
+                                    <a class="dropdown-item" href="<?php echo e(route('donations.records')); ?>"><?php echo e(__('Donate Records')); ?></a>
+                                    <?php if(auth()->user()->role === 'admin'): ?>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="<?php echo e(route('admin.donationRecords')); ?>"><?php echo e(__('Admin Donate Records')); ?></a>
+                                    <?php endif; ?>
                                 </div>
                             </li>
 
@@ -62,12 +67,14 @@
                                 Manage Pet Information
                                 </a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item active" href="ShowAdoptablePet.html">Pet for Adoption</a>
-                                    <a class="dropdown-item" href="AdptAppSub.html">Adoption Application Submitted</a>
-                                    <a class="dropdown-item" href="MyPet.html">My Pet</a>
-                                <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item active" href="<?php echo e(route('pets.create')); ?>"><?php echo e(__('Add Pet Information')); ?></a>
-                                    <a class="dropdown-item" href="PetInfoRecords.html">Pet Information Added</a>
+                                    <a class="dropdown-item active" href="MyPet.html"><?php echo e(__('My Pet')); ?></a>
+                                    <a class="dropdown-item" href="<?php echo e(route('adoptions.application')); ?>"><?php echo e(__('Adoption Applications')); ?></a>
+                                    <a class="dropdown-item" href="<?php echo e(route('pets.myAdded')); ?>"><?php echo e(__('Pets Added')); ?></a>
+                                    <?php if(auth()->user()->role === 'admin'): ?>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="<?php echo e(route('admin.pets.verification')); ?>"><?php echo e(__('New Pet Verification')); ?></a>
+                                        <a class="dropdown-item" href="<?php echo e(route('admin.adoptions')); ?>"><?php echo e(__('Adoption Management')); ?></a>
+                                    <?php endif; ?>
                                 </div>
                             </li>
                         <?php endif; ?>
@@ -111,6 +118,11 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item active" href="<?php echo e(route('showProfile')); ?>">
                                         <?php echo e(__('Profile')); ?>
+
+                                    </a>
+                                    
+                                    <a class="dropdown-item" href="<?php echo e(route('pets.myAdded')); ?>">
+                                        <?php echo e(__('Pet Added')); ?>
 
                                     </a>
 

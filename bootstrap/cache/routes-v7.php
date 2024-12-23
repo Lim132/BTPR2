@@ -24,7 +24,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::8fpz51IKjTBtCEee',
+            '_route' => 'generated::LYFm5XH0cLyxvveJ',
           ),
           1 => NULL,
           2 => 
@@ -102,7 +102,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::vHzZNVuzepMjSch6',
+            '_route' => 'generated::2NlLRgwtoprt3oFZ',
           ),
           1 => NULL,
           2 => 
@@ -122,7 +122,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::HOLxyQScgi8VULQo',
+            '_route' => 'generated::CpJ88I9FkZ3UfH4k',
           ),
           1 => NULL,
           2 => 
@@ -136,7 +136,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      '/show-adoptable-pet' => 
+      '/showAdp' => 
       array (
         0 => 
         array (
@@ -179,7 +179,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::bUwSavNEMocEgRxk',
+            '_route' => 'generated::2K2MgJwR9z91gygz',
           ),
           1 => NULL,
           2 => 
@@ -234,7 +234,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::NoVEV8OvFLPUVa5s',
+            '_route' => 'generated::56WCqS3Xd5JxaBIJ',
           ),
           1 => NULL,
           2 => 
@@ -325,7 +325,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::dCx81UqujfnuH2YD',
+            '_route' => 'generated::FHAO60qRqOpPDdpN',
           ),
           1 => NULL,
           2 => 
@@ -364,7 +364,166 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'donate',
+            '_route' => 'donate.form',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/donate/payment' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'donation.post',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/donate/records' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'donations.records',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/admin/pets/verification' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.pets.verification',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/admin/adoptions' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.adoptions',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/admin/donations' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.donationRecords',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/admin/donations/export/pdf' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.donations.exportPdf',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/admin/donations/export/excel' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.donations.exportExcel',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/admin/donations/export/csv' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.donations.exportCsv',
           ),
           1 => NULL,
           2 => 
@@ -475,19 +634,18 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      '/admin/pets/verify' => 
+      '/profile/update-address' => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'pets.index',
+            '_route' => 'profile.updateAddress',
           ),
           1 => NULL,
           2 => 
           array (
-            'GET' => 0,
-            'HEAD' => 1,
+            'POST' => 0,
           ),
           3 => NULL,
           4 => false,
@@ -534,14 +692,54 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
+      '/my-added' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'pets.myAdded',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/adoptions' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'adoptions.application',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
     ),
     2 => 
     array (
-      0 => '{^(?|/password/reset/([^/]++)(*:31)|/admin/pets/([^/]++)/(?|verify(*:68)|reject(*:81)))/?$}sDu',
+      0 => '{^(?|/p(?|assword/reset/([^/]++)(*:34)|ets/([^/]++)(?|(*:56)|/(?|edit(*:71)|update(*:84)|adopt(*:96))))|/donat(?|e/thank\\-you/([^/]++)(*:136)|ion/receipt/([^/]++)(*:164))|/admin/(?|pets/([^/]++)/(?|verify(*:206)|reject(*:220))|adoptions/([^/]++)/status(*:254)|donations/(?|([^/]++)(*:283)|export(*:297))))/?$}sDu',
     ),
     3 => 
     array (
-      31 => 
+      34 => 
       array (
         0 => 
         array (
@@ -564,7 +762,143 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      68 => 
+      56 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'pets.show',
+          ),
+          1 => 
+          array (
+            0 => 'pet',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      71 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'pets.edit',
+          ),
+          1 => 
+          array (
+            0 => 'pet',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      84 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'pets.update',
+          ),
+          1 => 
+          array (
+            0 => 'pet',
+          ),
+          2 => 
+          array (
+            'PUT' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      96 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'pets.adopt',
+          ),
+          1 => 
+          array (
+            0 => 'pet',
+          ),
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      136 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'donation.thank-you',
+          ),
+          1 => 
+          array (
+            0 => 'donation',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      164 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'donation.receipt',
+          ),
+          1 => 
+          array (
+            0 => 'donation',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      206 => 
       array (
         0 => 
         array (
@@ -586,7 +920,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      81 => 
+      220 => 
       array (
         0 => 
         array (
@@ -601,6 +935,73 @@ app('router')->setCompiledRoutes(
           2 => 
           array (
             'DELETE' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      254 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.adoptions.status',
+          ),
+          1 => 
+          array (
+            0 => 'adoption',
+          ),
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      283 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.donations.details',
+          ),
+          1 => 
+          array (
+            0 => 'donation',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      297 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.donations.export',
+          ),
+          1 => 
+          array (
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
           ),
           3 => NULL,
           4 => false,
@@ -623,7 +1024,7 @@ app('router')->setCompiledRoutes(
   ),
   'attributes' => 
   array (
-    'generated::8fpz51IKjTBtCEee' => 
+    'generated::LYFm5XH0cLyxvveJ' => 
     array (
       'methods' => 
       array (
@@ -644,7 +1045,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 'web',
         ),
-        'as' => 'generated::8fpz51IKjTBtCEee',
+        'as' => 'generated::LYFm5XH0cLyxvveJ',
       ),
       'fallback' => false,
       'defaults' => 
@@ -769,7 +1170,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::vHzZNVuzepMjSch6' => 
+    'generated::2NlLRgwtoprt3oFZ' => 
     array (
       'methods' => 
       array (
@@ -786,13 +1187,13 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'O:47:"Laravel\\SerializableClosure\\SerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Signed":2:{s:12:"serializable";s:295:"O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:77:"function (\\Illuminate\\Http\\Request $request) {
     return $request->user();
-}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000004e90000000000000000";}";s:4:"hash";s:44:"XSk8lInH13ElHlqTFmQwV1LVtPybDGvoiLfI3n1bzL0=";}}',
+}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000005260000000000000000";}";s:4:"hash";s:44:"BDQp3KcB7TVcA9SBN8ttZvzaot1cDHPdya7XU71XcoA=";}}',
         'namespace' => NULL,
         'prefix' => 'api',
         'where' => 
         array (
         ),
-        'as' => 'generated::vHzZNVuzepMjSch6',
+        'as' => 'generated::2NlLRgwtoprt3oFZ',
       ),
       'fallback' => false,
       'defaults' => 
@@ -808,7 +1209,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::HOLxyQScgi8VULQo' => 
+    'generated::CpJ88I9FkZ3UfH4k' => 
     array (
       'methods' => 
       array (
@@ -822,15 +1223,14 @@ app('router')->setCompiledRoutes(
         array (
           0 => 'web',
         ),
-        'uses' => 'O:47:"Laravel\\SerializableClosure\\SerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Signed":2:{s:12:"serializable";s:272:"O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:54:"function () {
-    return \\view(\'common.showAdpPet\');
-}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000004eb0000000000000000";}";s:4:"hash";s:44:"V6qzu7fy2XEiylA7XzBjS1id9oF4n2HiG17FS4XJego=";}}',
+        'uses' => 'App\\Http\\Controllers\\AdoptionController@index',
+        'controller' => 'App\\Http\\Controllers\\AdoptionController@index',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'generated::HOLxyQScgi8VULQo',
+        'as' => 'generated::CpJ88I9FkZ3UfH4k',
       ),
       'fallback' => false,
       'defaults' => 
@@ -853,15 +1253,15 @@ app('router')->setCompiledRoutes(
         0 => 'GET',
         1 => 'HEAD',
       ),
-      'uri' => 'show-adoptable-pet',
+      'uri' => 'showAdp',
       'action' => 
       array (
         'middleware' => 
         array (
           0 => 'web',
         ),
-        'uses' => 'App\\Http\\Controllers\\PageController@show',
-        'controller' => 'App\\Http\\Controllers\\PageController@show',
+        'uses' => 'App\\Http\\Controllers\\AdoptionController@index',
+        'controller' => 'App\\Http\\Controllers\\AdoptionController@index',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
@@ -920,7 +1320,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::bUwSavNEMocEgRxk' => 
+    'generated::2K2MgJwR9z91gygz' => 
     array (
       'methods' => 
       array (
@@ -940,7 +1340,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::bUwSavNEMocEgRxk',
+        'as' => 'generated::2K2MgJwR9z91gygz',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1029,7 +1429,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::NoVEV8OvFLPUVa5s' => 
+    'generated::56WCqS3Xd5JxaBIJ' => 
     array (
       'methods' => 
       array (
@@ -1049,7 +1449,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::NoVEV8OvFLPUVa5s',
+        'as' => 'generated::56WCqS3Xd5JxaBIJ',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1248,7 +1648,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::dCx81UqujfnuH2YD' => 
+    'generated::FHAO60qRqOpPDdpN' => 
     array (
       'methods' => 
       array (
@@ -1268,7 +1668,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::dCx81UqujfnuH2YD',
+        'as' => 'generated::FHAO60qRqOpPDdpN',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1321,7 +1721,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'donate' => 
+    'donate.form' => 
     array (
       'methods' => 
       array (
@@ -1335,14 +1735,14 @@ app('router')->setCompiledRoutes(
         array (
           0 => 'web',
         ),
-        'uses' => 'App\\Http\\Controllers\\PageController@donate',
-        'controller' => 'App\\Http\\Controllers\\PageController@donate',
+        'uses' => 'App\\Http\\Controllers\\DonationController@showDonationForm',
+        'controller' => 'App\\Http\\Controllers\\DonationController@showDonationForm',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'donate',
+        'as' => 'donate.form',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1358,28 +1758,64 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'showProfile' => 
+    'donation.post' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'donate/payment',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\DonationController@paymentPost',
+        'controller' => 'App\\Http\\Controllers\\DonationController@paymentPost',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'donation.post',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'donation.thank-you' => 
     array (
       'methods' => 
       array (
         0 => 'GET',
         1 => 'HEAD',
       ),
-      'uri' => 'profile',
+      'uri' => 'donate/thank-you/{donation}',
       'action' => 
       array (
         'middleware' => 
         array (
           0 => 'web',
         ),
-        'uses' => 'App\\Http\\Controllers\\PageController@showProfile',
-        'controller' => 'App\\Http\\Controllers\\PageController@showProfile',
+        'uses' => 'App\\Http\\Controllers\\DonationController@showThankYou',
+        'controller' => 'App\\Http\\Controllers\\DonationController@showThankYou',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'showProfile',
+        'as' => 'donation.thank-you',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1395,28 +1831,28 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'updateAvatar' => 
+    'donations.records' => 
     array (
       'methods' => 
       array (
         0 => 'GET',
         1 => 'HEAD',
       ),
-      'uri' => 'profileAvatar',
+      'uri' => 'donate/records',
       'action' => 
       array (
         'middleware' => 
         array (
           0 => 'web',
         ),
-        'uses' => 'App\\Http\\Controllers\\ProfileController@showAvatarEdit',
-        'controller' => 'App\\Http\\Controllers\\ProfileController@showAvatarEdit',
+        'uses' => 'App\\Http\\Controllers\\DonationController@showDonationRecords',
+        'controller' => 'App\\Http\\Controllers\\DonationController@showDonationRecords',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'updateAvatar',
+        'as' => 'donations.records',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1432,122 +1868,52 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'profile.updateAvatar' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'POST',
-      ),
-      'uri' => 'profileAvadat/update',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-        ),
-        'uses' => 'App\\Http\\Controllers\\ProfileController@updateAvatar',
-        'controller' => 'App\\Http\\Controllers\\ProfileController@updateAvatar',
-        'namespace' => NULL,
-        'prefix' => '',
-        'where' => 
-        array (
-        ),
-        'as' => 'profile.updateAvatar',
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'profile.updateUsername' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'POST',
-      ),
-      'uri' => 'profile/update-username',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-        ),
-        'uses' => 'App\\Http\\Controllers\\ProfileController@updateUsername',
-        'controller' => 'App\\Http\\Controllers\\ProfileController@updateUsername',
-        'namespace' => NULL,
-        'prefix' => '',
-        'where' => 
-        array (
-        ),
-        'as' => 'profile.updateUsername',
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'user.updatePassword' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'POST',
-      ),
-      'uri' => 'update-password',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'web',
-        ),
-        'uses' => 'App\\Http\\Controllers\\ProfileController@updatePassword',
-        'controller' => 'App\\Http\\Controllers\\ProfileController@updatePassword',
-        'namespace' => NULL,
-        'prefix' => '',
-        'where' => 
-        array (
-        ),
-        'as' => 'user.updatePassword',
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'pets.index' => 
+    'donation.receipt' => 
     array (
       'methods' => 
       array (
         0 => 'GET',
         1 => 'HEAD',
       ),
-      'uri' => 'admin/pets/verify',
+      'uri' => 'donation/receipt/{donation}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Controllers\\DonationController@generateReceipt',
+        'controller' => 'App\\Http\\Controllers\\DonationController@generateReceipt',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'donation.receipt',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.pets.verification' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin/pets/verification',
       'action' => 
       array (
         'middleware' => 
@@ -1556,14 +1922,14 @@ app('router')->setCompiledRoutes(
           1 => 'auth',
           2 => 'admin',
         ),
-        'uses' => 'App\\Http\\Controllers\\PetController@index',
-        'controller' => 'App\\Http\\Controllers\\PetController@index',
+        'uses' => 'App\\Http\\Controllers\\PetController@showVerificationPage',
+        'controller' => 'App\\Http\\Controllers\\PetController@showVerificationPage',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'pets.index',
+        'as' => 'admin.pets.verification',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1655,6 +2021,541 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
+    'admin.adoptions' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin/adoptions',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\AdoptionController@adminIndex',
+        'controller' => 'App\\Http\\Controllers\\AdoptionController@adminIndex',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'admin.adoptions',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.adoptions.status' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'admin/adoptions/{adoption}/status',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\AdoptionController@updateStatus',
+        'controller' => 'App\\Http\\Controllers\\AdoptionController@updateStatus',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'admin.adoptions.status',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.donationRecords' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin/donations',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\DonationController@showDonationRecordsAdmin',
+        'controller' => 'App\\Http\\Controllers\\DonationController@showDonationRecordsAdmin',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'admin.donationRecords',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.donations.details' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin/donations/{donation}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\DonationController@donationDetails',
+        'controller' => 'App\\Http\\Controllers\\DonationController@donationDetails',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'admin.donations.details',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.donations.export' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin/donations/export',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\DonationController@export',
+        'controller' => 'App\\Http\\Controllers\\DonationController@export',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'admin.donations.export',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.donations.exportPdf' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin/donations/export/pdf',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\DonationController@exportPdf',
+        'controller' => 'App\\Http\\Controllers\\DonationController@exportPdf',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'admin.donations.exportPdf',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.donations.exportExcel' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin/donations/export/excel',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\DonationController@exportExcel',
+        'controller' => 'App\\Http\\Controllers\\DonationController@exportExcel',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'admin.donations.exportExcel',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.donations.exportCsv' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin/donations/export/csv',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+          2 => 'admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\DonationController@exportCsv',
+        'controller' => 'App\\Http\\Controllers\\DonationController@exportCsv',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'admin.donations.exportCsv',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'showProfile' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'profile',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Controllers\\PageController@showProfile',
+        'controller' => 'App\\Http\\Controllers\\PageController@showProfile',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'showProfile',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'updateAvatar' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'profileAvatar',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Controllers\\ProfileController@showAvatarEdit',
+        'controller' => 'App\\Http\\Controllers\\ProfileController@showAvatarEdit',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'updateAvatar',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'profile.updateAvatar' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'profileAvadat/update',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Controllers\\ProfileController@updateAvatar',
+        'controller' => 'App\\Http\\Controllers\\ProfileController@updateAvatar',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'profile.updateAvatar',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'profile.updateUsername' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'profile/update-username',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Controllers\\ProfileController@updateUsername',
+        'controller' => 'App\\Http\\Controllers\\ProfileController@updateUsername',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'profile.updateUsername',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'user.updatePassword' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'update-password',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Controllers\\ProfileController@updatePassword',
+        'controller' => 'App\\Http\\Controllers\\ProfileController@updatePassword',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'user.updatePassword',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'profile.updateAddress' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'profile/update-address',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Controllers\\ProfileController@updateAddress',
+        'controller' => 'App\\Http\\Controllers\\ProfileController@updateAddress',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'profile.updateAddress',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
     'pets.create' => 
     array (
       'methods' => 
@@ -1715,6 +2616,232 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'pets.store',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'pets.show' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'pets/{pet}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Controllers\\PetController@show',
+        'controller' => 'App\\Http\\Controllers\\PetController@show',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'pets.show',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'pets.myAdded' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'my-added',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Controllers\\PetController@myAdded',
+        'controller' => 'App\\Http\\Controllers\\PetController@myAdded',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'pets.myAdded',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'pets.edit' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'pets/{pet}/edit',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Controllers\\PetController@edit',
+        'controller' => 'App\\Http\\Controllers\\PetController@edit',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'pets.edit',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'pets.update' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'PUT',
+      ),
+      'uri' => 'pets/{pet}/update',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Controllers\\PetController@update',
+        'controller' => 'App\\Http\\Controllers\\PetController@update',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'pets.update',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'pets.adopt' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'pets/{pet}/adopt',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Controllers\\AdoptionController@adopt',
+        'controller' => 'App\\Http\\Controllers\\AdoptionController@adopt',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'pets.adopt',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'adoptions.application' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'adoptions',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth',
+        ),
+        'uses' => 'App\\Http\\Controllers\\AdoptionController@adoptionApplication',
+        'controller' => 'App\\Http\\Controllers\\AdoptionController@adoptionApplication',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'adoptions.application',
       ),
       'fallback' => false,
       'defaults' => 

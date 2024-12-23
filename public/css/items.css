@@ -64,8 +64,8 @@
 }
 
 .pet-img{
-  width: 100% !important;
-  height: 80% !important;
+  width: 300px !important;
+  height: auto !important;
 }
 
 .pet-img-v{

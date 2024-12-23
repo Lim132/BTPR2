@@ -51,6 +51,22 @@ window.addEventListener('click', function(event) {
 });
 
 // Close modal after form submission (optional)
-document.querySelector('form').addEventListener('submit', function() {
-    closeModal1();
+//document.querySelector('form').addEventListener('submit', function() {
+ //   closeModal1();
+//});
+
+function openModal2() {
+    document.getElementById('updateAddressModal').style.display = 'block';
+}
+
+function closeModal2() {
+    document.getElementById('updateAddressModal').style.display = 'none';
+}
+
+window.addEventListener('click', function(event) {
+    let modal = document.getElementById('updateAddressModal');
+    if (event.target === modal) {
+        closeModal2();
+    }
 });
+
