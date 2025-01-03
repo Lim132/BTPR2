@@ -195,12 +195,11 @@
 @push('scripts')
 <script>
 function viewDetails(id) {
-    // 加载捐款详情的 Ajax 请求
-    $.get(`/admin/donations/${id}`, function(data) {
+    // 修改 URL 路径
+    $.get(`/admin/donations/${id}/details`, function(data) {
         $('#donationDetails .modal-body').html(data);
         $('#donationDetails').modal('show');
     });
 }
 </script>
-@endpush
 @endsection

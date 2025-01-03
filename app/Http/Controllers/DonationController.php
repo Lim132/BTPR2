@@ -200,6 +200,5 @@ class DonationController extends Controller
                            ->paginate(10);
         return view('common.donationRecords', compact('donations'));
     }
-
     
 }
