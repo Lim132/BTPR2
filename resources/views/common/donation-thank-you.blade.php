@@ -5,17 +5,17 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Thank You for Your Donation!</div>
+                <div class="card-header title1">Thank You for Your Donation!</div>
                 <div class="card-body">
                     <div class="donation-details">
-                        <h4>Donation Details:</h4>
-                        <p><strong>Amount:</strong> RM {{ $donation->amount }}</p>
-                        <p><strong>Donor Name:</strong> {{ $donation->donor_name }}</p>
-                        <p><strong>Email:</strong> {{ $donation->donor_email }}</p>
+                        <h4 class="title1">Donation Details:</h4>
+                        <p class="words2"><strong>Amount:</strong> RM {{ $donation->amount }}</p>
+                        <p class="words2"><strong>Donor Name:</strong> {{ $donation->donor_name }}</p>
+                        <p class="words2"><strong>Email:</strong> {{ $donation->donor_email }}</p>
                         @if($donation->message)
-                            <p><strong>Message:</strong> {{ $donation->message }}</p>
+                            <p class="words2"><strong>Message:</strong> {{ $donation->message }}</p>
                         @endif
-                        <p><strong>Date:</strong> {{ $donation->created_at->format('Y-m-d H:i:s') }}</p>
+                        <p class="words2"><strong>Date:</strong> {{ $donation->created_at->format('Y-m-d H:i:s') }}</p>
                     </div>
 
                     @auth

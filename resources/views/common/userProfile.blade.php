@@ -20,7 +20,7 @@
                                 alt="Profile Picture" 
                                 style="width: 350px; height: 350px; object-fit: cover; border-radius: 18px;">
                         @else
-                            <img src="{{ asset('images/default-avatar.png') }}" 
+                            <img src="{{ asset('images/image1.png') }}" 
                                 alt="Default Profile Picture" 
                                 style="width: 350px; height: 350px; object-fit: cover; border-radius: 18px;">
                         @endif

@@ -42,7 +42,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" 
                             name="name" value="<?php echo e(old('name')); ?>"
-                            <?php echo e(auth()->user()->role === 'customer' ? 'required' : ''); ?>>
+                            <?php echo e(auth()->user()->role === 'customer' ? 'required' : ''); ?> placeholder="Please enter the pet's name">
                         <?php $__errorArgs = ['name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -66,7 +66,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" 
                             name="age" value="<?php echo e(old('age')); ?>"
-                            <?php echo e(auth()->user()->role === 'customer' ? 'required' : ''); ?>>
+                            <?php echo e(auth()->user()->role === 'customer' ? 'required' : ''); ?> placeholder="If less than 1 year old, please enter 0">
                         <?php $__errorArgs = ['age'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :

@@ -9,8 +9,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use PDF;
 use Carbon\Carbon;
-use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\DonationsExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\DonationReceipt;
 
 class DonationController extends Controller
 {
@@ -49,8 +51,15 @@ class DonationController extends Controller
                     ]);
 
                 // 保存捐赠记录
+                if (Auth::check()) {
+                    $userId = Auth::id();
+                } else {
+                    $user = DB::table('users')->where('email', $request->donor_email)->first();
+                    $userId = $user ? $user->id : null;
+                }
+
                 $donation = Donation::create([
-                    'user_id' => auth()->id(),
+                    'user_id' => $userId,
                     'amount' => $request->amount,
                     'currency' => 'MYR',
                     'stripe_payment_id' => $charge->id,
@@ -58,8 +67,13 @@ class DonationController extends Controller
                     'donor_email' => $request->donor_email,
                     'message' => $request->message
                 ]);
+
+                // 发送收据邮件
+                $this->sendDonationReceipt($donation);
                 
-            return redirect()->route('donation.thank-you', ['donation' => $donation->id])->with('success', 'Thank you for your donation!');
+                return redirect()
+                    ->route('donation.thank-you', ['donation' => $donation->id])
+                    ->with('success', 'Thank you for your donation! A receipt has been sent to your email.');
         } catch (\Exception $e) {
             \Log::error('Stripe error: ' . $e->getMessage());
             return back()->with('error', $e->getMessage())->withInput();
@@ -124,25 +138,41 @@ class DonationController extends Controller
 
     public function showDonationRecordsAdmin(Request $request)
     {
+        if (auth()->user()->role != 'admin') {
+            abort(403, 'Unauthorized access');
+        }
+        
         $query = Donation::query();
 
         // 搜索
         if ($request->search) {
             $query->where(function($q) use ($request) {
                 $q->where('donor_name', 'like', "%{$request->search}%")
-                  ->orWhere('donor_email', 'like', "%{$request->search}%");
+                  ->orWhere('donor_email', 'like', "%{$request->search}%")
+                  ->orWhere('id', 'like', "%{$request->search}%")
+                  ->orWhere(function($q) use ($request) {
+                      $searchId = str_replace('RCP-', '', $request->search);
+                      if (is_numeric($searchId)) {
+                          $q->where('id', $searchId);
+                      }
+                  });
             });
         }
 
         // 金额过滤
+        
         if ($request->amount_filter) {
-            list($min, $max) = explode('-', $request->amount_filter);
-            if ($max == '+') {
+            if (str_contains($request->amount_filter, '+')) {
+                // 处理 "101+" 的情况
+                $min = (int) str_replace('+', '', $request->amount_filter);
                 $query->where('amount', '>', $min);
             } else {
-                $query->whereBetween('amount', [$min, $max]);
+                // 处理 "min-max" 的情况
+                list($min, $max) = explode('-', $request->amount_filter);
+                $query->whereBetween('amount', [(int) $min, (int) $max]);
             }
         }
+        
 
         // 日期过滤
         if ($request->date_filter) {
@@ -170,35 +200,80 @@ class DonationController extends Controller
                               ->whereYear('created_at', now()->year)
                               ->sum('amount');
 
-        $donations = $query->latest()->paginate(15);
+        $donations = $query->latest()->paginate(6);
+
+        foreach ($donations as $donation) {
+            $receiptNo = 'RCP-' . str_pad($donation->id, 10, '0', STR_PAD_LEFT);
+        }
+        
+        if ($donations->isEmpty()) {
+            $receiptNo = 'No donations found';
+        }
+
+        // 保持所有查询参数
+        $donations->appends($request->all());
 
         return view('admin.donationRecordsAdm', compact(
             'donations',
             'totalAmount',
             'totalDonors',
             'todayAmount',
-            'monthAmount'
+            'monthAmount',
+            'receiptNo'
         ));
     }
 
-    public function export()
-    {
-        return Excel::download(new DonationsExport, 'donations.xlsx');
-    }
+    
 
-    public function show($id)
+    // public function show($id)
+    // {
+    //     $donation = Donation::findOrFail($id);
+    //     return view('admin.donation-details', compact('donation'));
+    // }
+
+    // // 用户查看自己的捐款记录
+    // public function userDonations()
+    // {
+    //     $donations = Donation::where('donor_email', auth()->user()->email)
+    //                        ->latest()
+    //                        ->paginate(10);
+    //     return view('common.donationRecords', compact('donations'));
+    // }
+
+    public function donationDetails($id)
     {
         $donation = Donation::findOrFail($id);
-        return view('admin.donation-details', compact('donation'));
+        $receiptNo = 'RCP-' . str_pad($donation->id, 10, '0', STR_PAD_LEFT);
+        $date = Carbon::parse($donation->created_at)->format('d M Y');
+        return view('admin.donation-details', compact('donation', 'receiptNo', 'date'));
     }
 
-    // 用户查看自己的捐款记录
-    public function userDonations()
+    public function donationsExcel()
     {
-        $donations = Donation::where('donor_email', auth()->user()->email)
-                           ->latest()
-                           ->paginate(10);
-        return view('common.donationRecords', compact('donations'));
+        if (auth()->user()->role != 'admin') {
+            abort(403, 'Unauthorized access');
+        }
+        
+        $filename = 'donations-' . now()->format('Y-m-d') . '.xlsx';
+        return Excel::download(new DonationsExport, $filename);
     }
-    
+
+    private function sendDonationReceipt($donation)
+    {
+        try {
+            \Log::info('Attempting to send email to: ' . $donation->donor_email);
+
+            // 发送带附件的邮件
+            Mail::to($donation->donor_email)
+                ->send(new DonationReceipt($donation));
+
+            // 添加成功日志
+            \Log::info('Email sent successfully');
+
+        } catch (\Exception $e) {
+            // 详细记录错误信息
+            \Log::error('Failed to send donation receipt email: ' . $e->getMessage());
+            \Log::error('Stack trace: ' . $e->getTraceAsString());
+        }
+    }
 }

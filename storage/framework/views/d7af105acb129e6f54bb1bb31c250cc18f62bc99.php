@@ -18,7 +18,7 @@
                                 alt="Profile Picture" 
                                 style="width: 350px; height: 350px; object-fit: cover; border-radius: 18px;">
                         <?php else: ?>
-                            <img src="<?php echo e(asset('images/default-avatar.png')); ?>" 
+                            <img src="<?php echo e(asset('images/image1.png')); ?>" 
                                 alt="Default Profile Picture" 
                                 style="width: 350px; height: 350px; object-fit: cover; border-radius: 18px;">
                         <?php endif; ?>

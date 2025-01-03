@@ -90,8 +90,8 @@ return [
         'users' => [
             'provider' => 'users',
             'table' => 'password_resets',
-            'expire' => 60,
-            'throttle' => 60,
+            'expire' => 60, //in 60 minutes
+            'throttle' => 30,// 30秒内只能重置一次
         ],
     ],
 

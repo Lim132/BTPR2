@@ -55,7 +55,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone' => ['required', 'digits_between:10,15', 'unique:users'], // Validates phone as a string of digits between 10 and 15 characters
             'password' => ['required', 'string', 'min:8', 'confirmed'], // Confirmed rule is fine for password
-            'age' => ['nullable', 'integer'], // Allows null values for age, since it may not be required
+            'age' => ['nullable', 'integer', 'min:16'], // Allows null values for age, since it may not be required
             'gender' => ['nullable', 'string', 'in:male,female,other'], // You can customize the acceptable gender values
             'address' => ['nullable', 'string', 'max:255'],
             // Optional: Set default in database or here as an allowed value
@@ -73,7 +73,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         // 设置默认头像路径
-        $defaultAvatarPath = 'images/image1.png';
+       // $defaultAvatarPath = 'images/image1.png';
         
         return User::create([
             'firstName' => $data['firstName'],
@@ -86,7 +86,7 @@ class RegisterController extends Controller
             'gender' => $data['gender'],
             'address' => $data['address'],
             'role' => 'customer', // Default identity set to "customer"
-            'avatar' => $defaultAvatarPath, // 设置默认头像路径
+            'avatar' => null, // 设置默认头像路径
         ]);
     }
 }

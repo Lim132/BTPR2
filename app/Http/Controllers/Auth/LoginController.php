@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -63,16 +65,21 @@ class LoginController extends Controller
     }
 
     /**
-     * Validate the login request.
+     * Validate the user login request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return void
+     *
+     * @throws \Illuminate\Validation\ValidationException
      */
     protected function validateLogin(Request $request)
     {
         $request->validate([
             'login' => 'required|string',
             'password' => 'required|string',
+        ], [
+            'login.required' => 'Email, phone or username is required.',
+            'password.required' => 'Password is required.',
         ]);
     }
 
@@ -87,9 +94,28 @@ class LoginController extends Controller
     {
         // Redirect based on the user's identity
         if ($user->role === 'admin') {
-            return redirect()->route('admin.pets.verification'); // Adjust route as needed
+            return redirect()->route('admin.dashboard'); // Adjust route as needed
         }
 
         return redirect()->route('showAdp'); // Adjust route as needed
+    }
+
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        $login = $request->input('login');
+        $user = User::where('email', $login)
+            ->orWhere('phone', $login)
+            ->orWhere('username', $login)
+            ->first();
+
+        if (!$user) {
+            throw ValidationException::withMessages([
+                'login' => ['The provided email/phone/username does not exist.'],
+            ]);
+        }
+
+        throw ValidationException::withMessages([
+            'password' => ['The provided password is incorrect.'],
+        ]);
     }
 }

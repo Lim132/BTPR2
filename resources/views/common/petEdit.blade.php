@@ -293,7 +293,7 @@
                     <div class="col-12">
                         <button type="submit" class="btn btn-primary">
                             {{ __('Update Pet') }}
-                        </button>
+                        </button> &nbsp;
                         <a href="{{ route('pets.myAdded') }}" class="btn btn-secondary">
                             {{ __('Cancel') }}
                         </a>

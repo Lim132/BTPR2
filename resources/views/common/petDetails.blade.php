@@ -33,7 +33,7 @@
                                         <img src="{{ Storage::url($photo) }}" 
                                             class="d-block w-100" 
                                             alt="Pet Photo"
-                                            style="height: 400px; object-fit: cover;">
+                                            style="max-height: 400px; object-fit: contain;">
                                     </div>
                                 @endforeach
                             </div>
@@ -53,7 +53,13 @@
                         <div class="col-md-6">
                             <h5>Basic Information</h5>
                             <ul class="list-unstyled">
-                                <li><strong>Age:</strong> {{ $pet->age }} years</li>
+                                @if($pet->age == 0)
+                                    <li><strong>Age:</strong> Under 1 year</li>
+                                @elseif($pet->age == 1)
+                                    <li><strong>Age:</strong> 1 year</li>
+                                @else
+                                    <li><strong>Age:</strong> {{ $pet->age }} years</li>
+                                @endif
                                 <li><strong>Species:</strong> {{ ucfirst($pet->species) }}</li>
                                 <li><strong>Breed:</strong> {{ ucfirst($pet->breed) }}</li>
                                 <li><strong>Gender:</strong> {{ ucfirst($pet->gender) }}</li>
@@ -136,7 +142,7 @@
 {{-- 添加确认对话框的 JavaScript --}}
 <script>
 function confirmAdoption() {
-    if (confirm('确定要申请领养这只宠物吗？')) {
+    if (confirm('Are you sure you want to apply for adoption of this pet?')) {
         document.getElementById('adoptForm').submit();
     }
 }

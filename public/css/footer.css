@@ -128,3 +128,9 @@
 .h75px{
     height: 75px !important;
 }
+.bxl-facebook-circle {
+    color: white;
+}
+.bxl-facebook-circle:hover {
+    color: #3B5998;
+}

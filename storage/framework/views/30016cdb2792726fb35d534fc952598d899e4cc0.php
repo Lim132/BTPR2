@@ -3,19 +3,105 @@
 <?php $__env->startSection('content'); ?>
 <div class="container">
     <div class="row mb-4">
-        <div class="col">
-            <h2>Pets Pending Verification</h2>
+        <div class="col title1">
+            <h2>Pet Verification Management</h2>
         </div>
     </div>
 
-    <?php if($unverifiedPets->isEmpty()): ?>
+    
+    <div class="card mb-4">
+        <div class="card-body">
+            <form action="<?php echo e(route('admin.pets.verification')); ?>" method="GET" class="row g-3">
+                <input type="hidden" name="status" value="<?php echo e(request()->get('status', 'unverified')); ?>">
+                
+                <div class="col-md-3">
+                    <label class="form-label words">Species</label>
+                    <select name="species" class="form-select words2">
+                        <option value="">All Species</option>
+                        <option value="dog" <?php echo e(request('species') === 'dog' ? 'selected' : ''); ?>>Dog</option>
+                        <option value="cat" <?php echo e(request('species') === 'cat' ? 'selected' : ''); ?>>Cat</option>
+                        <option value="bird" <?php echo e(request('species') === 'bird' ? 'selected' : ''); ?>>Bird</option>
+                        <option value="other" <?php echo e(request('species') === 'other' ? 'selected' : ''); ?>>Other</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label words">Gender</label>
+                    <select name="gender" class="form-select words2">
+                        <option value="">All Genders</option>
+                        <option value="male" <?php echo e(request('gender') === 'male' ? 'selected' : ''); ?>>Male</option>
+                        <option value="female" <?php echo e(request('gender') === 'female' ? 'selected' : ''); ?>>Female</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label words">Size</label>
+                    <select name="size" class="form-select words2">
+                        <option value="">All Sizes</option>
+                        <option value="small" <?php echo e(request('size') === 'small' ? 'selected' : ''); ?>>Small</option>
+                        <option value="medium" <?php echo e(request('size') === 'medium' ? 'selected' : ''); ?>>Medium</option>
+                        <option value="large" <?php echo e(request('size') === 'large' ? 'selected' : ''); ?>>Large</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label words">Vaccinated</label>
+                    <select name="vaccinated" class="form-select">
+                        <option value="">All</option>
+                        <option value="1" <?php echo e(request('vaccinated') === '1' ? 'selected' : ''); ?>>Yes</option>
+                        <option value="0" <?php echo e(request('vaccinated') === '0' ? 'selected' : ''); ?>>No</option>
+                    </select>
+                </div>
+
+                <div class="col-12">
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-filter me-1"></i>Apply Filters
+                        </button>
+                        <a href="<?php echo e(route('admin.pets.verification', ['status' => request()->get('status', 'unverified')])); ?>" 
+                           class="btn btn-secondary">
+                            <i class="fas fa-undo me-1"></i>Reset Filters
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    
+    <ul class="nav nav-tabs mb-4">
+        <li class="nav-item">
+            <a class="nav-link <?php echo e(request()->get('status', 'unverified') === 'unverified' ? 'active' : ''); ?>" 
+               href="<?php echo e(route('admin.pets.verification', ['status' => 'unverified'])); ?>">
+                Pending Verification
+                <?php if($unverifiedCount > 0): ?>
+                    <span class="badge bg-danger ms-2"><?php echo e($unverifiedCount); ?></span>
+                <?php endif; ?>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link <?php echo e(request()->get('status') === 'verified' ? 'active' : ''); ?>" 
+               href="<?php echo e(route('admin.pets.verification', ['status' => 'verified'])); ?>">
+                Verified Pets
+                <?php if($verifiedCount > 0): ?>
+                    <span class="badge bg-success ms-2"><?php echo e($verifiedCount); ?></span>
+                <?php endif; ?>
+            </a>
+        </li>
+    </ul>
+
+    <?php if($pets->isEmpty()): ?>
         <div class="alert alert-info">
             <i class="fas fa-info-circle me-2"></i>
-            No pets pending verification at the moment.
+            <?php if(request()->get('status') === 'verified'): ?>
+                No verified pets found.
+            <?php else: ?>
+                No pets pending verification at the moment.
+            <?php endif; ?>
         </div>
     <?php else: ?>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            <?php $__currentLoopData = $unverifiedPets; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pet): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php $__currentLoopData = $pets; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pet): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="col">
                 <div class="card h-100">
                     <?php if($pet->photos && count($pet->photos) > 0): ?>
@@ -31,7 +117,13 @@
                         <ul class="list-unstyled">
                             <li><strong>Species:</strong> <?php echo e(ucfirst($pet->species)); ?></li>
                             <li><strong>Breed:</strong> <?php echo e(ucfirst($pet->breed)); ?></li>
-                            <li><strong>Age:</strong> <?php echo e($pet->age); ?></li>
+                            <li><strong>Age:</strong> <?php if($pet->age < 1): ?>
+                                                        <?php echo e(__('Less than 1 year old')); ?>
+
+                                                      <?php else: ?>
+                                                        <?php echo e($pet->age); ?>
+
+                                                      <?php endif; ?></li>
                             <li><strong>Gender:</strong> <?php echo e(ucfirst($pet->gender)); ?></li>
                             <li><strong>Health Status:</strong> 
                                 <?php $__currentLoopData = $pet->healthStatus; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $status): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -344,6 +436,51 @@
             </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
+
+        
+        <div class="d-flex justify-content-center mt-4">
+            <?php echo e($pets->appends(['status' => request()->get('status', 'unverified')])->links()); ?>
+
+        </div>
+
+        
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 为每个宠物的模态框设置事件监听
+            <?php $__currentLoopData = $pets; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pet): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                setupModalHandlers('<?php echo e($pet->id); ?>');
+
+                // 为每个宠物设置健康状态复选框监听器
+                const otherCheckbox = document.getElementById('otherHealthCheckbox<?php echo e($pet->id); ?>');
+                const otherInput = document.getElementById('otherHealthStatus<?php echo e($pet->id); ?>');
+
+                if (otherCheckbox && otherInput) {
+                    otherCheckbox.addEventListener('change', function() {
+                        otherInput.classList.toggle('d-none', !this.checked);
+                        if (this.checked) {
+                            otherInput.focus();
+                            otherInput.required = true;
+                        } else {
+                            otherInput.required = false;
+                            otherInput.value = '';
+                        }
+                    });
+
+                    // 验证至少选择一个健康状态
+                    const form = otherCheckbox.closest('form');
+                    form.addEventListener('submit', function(e) {
+                        const checkboxes = form.querySelectorAll('.health-status-checkbox:checked');
+                        if (checkboxes.length === 0) {
+                            e.preventDefault();
+                            alert('请至少选择一个健康状态！\nPlease select at least one health status!');
+                        }
+                    });
+                }
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        });
+
+        // ... rest of the JavaScript code ...
+        </script>
     <?php endif; ?>
 </div>
 <?php $__env->stopSection(); ?>
@@ -351,7 +488,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // 为每个宠物的模态框设置事件监听
-    <?php $__currentLoopData = $unverifiedPets; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pet): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+    <?php $__currentLoopData = $pets; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pet): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         setupModalHandlers('<?php echo e($pet->id); ?>');
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
@@ -469,32 +606,5 @@ function toggleOtherInput(selectElement, otherInputElement) {
         otherInputElement.required = false;
     }
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-    const otherCheckbox = document.getElementById('otherHealthCheckbox<?php echo e($pet->id); ?>');
-    const otherInput = document.getElementById('otherHealthStatus<?php echo e($pet->id); ?>');
-
-    otherCheckbox.addEventListener('change', function() {
-        otherInput.classList.toggle('d-none', !this.checked);
-        if (this.checked) {
-            otherInput.focus();
-            otherInput.required = true;
-        } else {
-            otherInput.required = false;
-            otherInput.value = '';
-        }
-    });
-
-    // Validate that at least one health status is selected
-    const form = otherCheckbox.closest('form');
-    form.addEventListener('submit', function(e) {
-        const checkboxes = form.querySelectorAll('.health-status-checkbox:checked');
-        if (checkboxes.length === 0) {
-            e.preventDefault();
-            alert('请至少选择一个健康状态！\nPlease select at least one health status!');
-        }
-    });
-});
-
 </script>
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\CourseTools\Laragon\laragon\www\BTPR2\resources\views/admin/petInfoVerification.blade.php ENDPATH**/ ?>

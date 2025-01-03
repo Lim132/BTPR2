@@ -41,6 +41,7 @@
       24 => 'App\\Providers\\EventServiceProvider',
       25 => 'App\\Providers\\RouteServiceProvider',
       26 => 'Barryvdh\\DomPDF\\ServiceProvider',
+      27 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
     ),
     'aliases' => 
     array (
@@ -84,6 +85,7 @@
       'View' => 'Illuminate\\Support\\Facades\\View',
       'Vite' => 'Illuminate\\Support\\Facades\\Vite',
       'PDF' => 'Barryvdh\\DomPDF\\Facade',
+      'Excel' => 'Maatwebsite\\Excel\\Facades\\Excel',
     ),
   ),
   'auth' => 
@@ -121,7 +123,7 @@
         'provider' => 'users',
         'table' => 'password_resets',
         'expire' => 60,
-        'throttle' => 60,
+        'throttle' => 30,
       ),
     ),
     'password_timeout' => 10800,
@@ -611,11 +613,11 @@
       'smtp' => 
       array (
         'transport' => 'smtp',
-        'host' => 'mailhog',
-        'port' => '1025',
-        'encryption' => NULL,
-        'username' => NULL,
-        'password' => NULL,
+        'host' => 'smtp.gmail.com',
+        'port' => '587',
+        'encryption' => 'tls',
+        'username' => 'kaiyun132@gmail.com',
+        'password' => 'rdoq kcia pizr gqhg',
         'timeout' => NULL,
       ),
       'ses' => 
@@ -656,7 +658,7 @@
     ),
     'from' => 
     array (
-      'address' => NULL,
+      'address' => 'kaiyun132@gmail.com',
       'name' => 'Pet4U',
     ),
     'markdown' => 

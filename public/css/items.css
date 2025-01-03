@@ -50,6 +50,15 @@
     color: orange !important;
 }
 
+.pet-title2{
+  font-family: Arial Black, Arail, sans-serif !important;
+  color: orange !important;
+  font-size: 24px !important;
+  margin-top: 0PX !important;
+  margin-bottom: 5% !important;
+  border-bottom: 1px solid orange !important;
+}
+
 .card-heading{
   font-family: Arial Black, Arail, sans-serif !important;
   color: orange !important;
@@ -64,8 +73,9 @@
 }
 
 .pet-img{
-  width: 300px !important;
+  width: 100% !important;
   height: auto !important;
+  border-radius: 10px !important;
 }
 
 .pet-img-v{
@@ -152,3 +162,39 @@ p, .adopt-title{
   font-size: 20px;
   cursor: pointer;
 }
+
+.nav-tabs .nav-link {
+  /* color: #495057; */
+  color: #f8d2ab !important;
+}
+.nav-tabs .nav-link:hover{
+  color: orange !important;
+}
+.nav-tabs .nav-link.active {
+  font-weight: bold !important;
+  color: orange !important;
+}
+.badge {
+  margin-left: 5px !important;
+}
+.table td {
+  vertical-align: middle !important;
+}
+
+.words{
+  color: orange !important;
+  font-family: Arial Black, Arial, sans-serif !important;
+}
+
+.words2{
+  color: orange !important;
+  font-family: Arial, sans-serif !important;
+}
+
+.title2{
+  color: white !important;
+  font-family: Arial Black, Arial, sans-serif !important;
+  font-size: 24px !important;
+  
+}
+

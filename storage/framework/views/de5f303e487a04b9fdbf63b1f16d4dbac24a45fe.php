@@ -6,6 +6,16 @@
                 <div class="card-header"><?php echo e(__('Login')); ?></div>
 
                 <div class="card-body">
+                    <?php if($errors->any()): ?>
+                        <div class="alert alert-danger">
+                            <ul class="mb-0">
+                                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <li><?php echo e($error); ?></li>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </ul>
+                        </div>
+                    <?php endif; ?>
+
                     <form method="POST" action="<?php echo e(route('login')); ?>">
                         <?php echo csrf_field(); ?>
 
@@ -86,7 +96,7 @@ unset($__errorArgs, $__bag); ?>
                                 </button>
 
                                 <?php if(Route::has('password.request')): ?>
-                                    <a class="btn-link" href="<?php echo e(route('password.request')); ?>">
+                                    <a class="btn btn-link" href="<?php echo e(route('password.request')); ?>">
                                         <?php echo e(__('Forgot Your Password?')); ?>
 
                                     </a>

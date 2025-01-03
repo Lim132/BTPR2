@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h2 class="mb-4">My Adoption Applications</h2>
+    <h2 class="mb-4 title1">My Adoption Applications</h2>
 
     {{-- 状态标签页 --}}
     <ul class="nav nav-tabs mb-4">

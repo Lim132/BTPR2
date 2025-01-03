@@ -33,7 +33,7 @@
                         <label>{{ __('Name') }}</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" 
                             name="name" value="{{ old('name') }}"
-                            {{ auth()->user()->role === 'customer' ? 'required' : '' }}>
+                            {{ auth()->user()->role === 'customer' ? 'required' : '' }} placeholder="Please enter the pet's name">
                         @error('name')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
@@ -43,7 +43,7 @@
                         <label>{{ __('Age') }}</label>
                         <input type="number" class="form-control @error('age') is-invalid @enderror" 
                             name="age" value="{{ old('age') }}"
-                            {{ auth()->user()->role === 'customer' ? 'required' : '' }}>
+                            {{ auth()->user()->role === 'customer' ? 'required' : '' }} placeholder="If less than 1 year old, please enter 0">
                         @error('age')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror

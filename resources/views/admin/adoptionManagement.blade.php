@@ -2,9 +2,21 @@
 
 @section('content')
 <div class="container">
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+    
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <div class="card">
         <div class="card-header text-center">
-            <h2 class="mb-0">Adoption Applications Management</h2>
+            <h2 class="mb-0 title2">Adoption Applications Management</h2>
         </div>
         
         <div class="card-body">
@@ -351,6 +363,7 @@ function updateStatus(adoptionId, status) {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
+                alert('Status updated successfully');
                 location.reload();
             } else {
                 alert('Error updating status: ' + (data.message || 'Please try again.'));

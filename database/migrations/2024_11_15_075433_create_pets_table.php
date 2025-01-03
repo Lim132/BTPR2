@@ -31,6 +31,7 @@ return new class extends Migration
             $table->unsignedBigInteger('addedBy');
             $table->string('addedByRole');
             $table->boolean('verified')->default(false);
+            $table->boolean('adopted')->default(false);
             $table->timestamps();
 
             $table->foreign('addedBy')->references('id')->on('users');

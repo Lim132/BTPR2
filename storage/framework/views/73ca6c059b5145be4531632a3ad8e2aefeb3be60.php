@@ -19,6 +19,8 @@
 
     <!-- Scripts -->
      <!-- jQuery, Popper.js, and Bootstrap JS (Bootstrap 4) -->
+     <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
+     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
     <script src="<?php echo e(asset('js/profile.js')); ?>"></script>
@@ -47,17 +49,21 @@
                                 <a class="nav-link" href="<?php echo e(route('showAdp')); ?>"><?php echo e(__('Show Adoptable Pet')); ?></a>
                             </li>
                             -->
+                            
+                        <?php if(auth()->guard()->guest()): ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo e(route('donate.form')); ?>"><?php echo e(__('Donate')); ?></a>
+                            </li>
+                        <?php else: ?>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">Donation</a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item active" href="<?php echo e(route('donate.form')); ?>"><?php echo e(__('Donate')); ?></a>
-                        <?php if(auth()->guard()->guest()): ?>
-                        <?php else: ?>        
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="<?php echo e(route('donations.records')); ?>"><?php echo e(__('Donate Records')); ?></a>
                                     <?php if(auth()->user()->role === 'admin'): ?>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="<?php echo e(route('admin.donationRecords')); ?>"><?php echo e(__('Admin Donate Records')); ?></a>
+                                        <a class="dropdown-item" href="<?php echo e(route('admin.donationRecords')); ?>"><?php echo e(__('All Donate Records')); ?></a>
                                     <?php endif; ?>
                                 </div>
                             </li>
@@ -67,7 +73,7 @@
                                 Manage Pet Information
                                 </a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item active" href="MyPet.html"><?php echo e(__('My Pet')); ?></a>
+                                    <a class="dropdown-item active" href="<?php echo e(route('myPets.index')); ?>"><?php echo e(__('My Pet')); ?></a>
                                     <a class="dropdown-item" href="<?php echo e(route('adoptions.application')); ?>"><?php echo e(__('Adoption Applications')); ?></a>
                                     <a class="dropdown-item" href="<?php echo e(route('pets.myAdded')); ?>"><?php echo e(__('Pets Added')); ?></a>
                                     <?php if(auth()->user()->role === 'admin'): ?>
@@ -125,6 +131,10 @@
                                         <?php echo e(__('Pet Added')); ?>
 
                                     </a>
+                                    <?php if(auth()->user()->role === 'admin'): ?>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="<?php echo e(route('admin.dashboard')); ?>"><?php echo e(__('Admin Dashboard')); ?></a>
+                                    <?php endif; ?>
 
                                     <a class="dropdown-item" href="<?php echo e(route('logout')); ?>"
                                        onclick="event.preventDefault();
@@ -156,7 +166,7 @@
             <div class="card" style="margin-bottom: 0;">
               <div class="card-body">
                 <h5 class="card-title">H.O.P.E - Homeless & Orphan Pets Exist</h5>
-                <p class="card-text" style="text-align: center;">Homeless & Orphan Pets Exist - H.O.P.E. is a non profit and non-governmental organization which is currently located at Pekan Nanas, Johor. 
+                <p class="card-text" style="text-align: left;">Homeless & Orphan Pets Exist - H.O.P.E. is a non profit and non-governmental organization which is currently located at Pekan Nanas, Johor. 
                   H.O.P.E. was established in April 2008 and was officially registered with the Registry of Societies of Malaysia on August 2009. H.O.P.E. is a 100% NO KILL animal shelter for all breeds of dogs and cats.</p>
               </div>
             </div>
@@ -178,23 +188,14 @@
                 <br>E-mail: <a href=mailto:hopejbdonation@gmail.com style="color: white;">hopejbdonation@gmail.com</a></p>
                 <div class="container-fluid"  style="border-top: 1px solid black;">
                     <a href="https://www.facebook.com/hopejb/" target="_blank">
-                      &nbsp;<i class='bx bxl-facebook-circle'></i>
+                      <i class='bx bxl-facebook-circle'></i>
                     </a>
                 </div>
               </div>
             </div>
         </div>
       </div>
-      <div class="container-fluid">
-        <center style="font-family: 'Varela Round'; color: white; background-color: orange;">
-          <br>
-          <p>
-            <i class='bx bx-copyright'>2024</i> <span style="font-size: 20px;">HOPE</span> PPM-007-01-22122009<br>
-            <span style="font-weight: bold;">Powered</span> by HOPE JB
-          </p>  
-          <br>        
-        </center>
-        </div>
+      
     </footer>
 </body>
 </html>

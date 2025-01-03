@@ -79,6 +79,9 @@
             <p><strong>Date:</strong> {{ $date }}</p>
             <p><strong>Donor Name:</strong> {{ $donation->donor_name }}</p>
             <p><strong>Email:</strong> {{ $donation->donor_email }}</p>
+            @if($donation->message)
+                <p><strong>Message:</strong> {{ $donation->message }}</p>
+            @endif
         </div>
 
         <table class="receipt-table">

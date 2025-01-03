@@ -52,9 +52,11 @@ class PetController extends Controller
                 }
             }
 
-            // 处理 species 和 breed
+            // 处理 species 和 breed 和 color 和 personality
             $species = $request->species === 'other' ? $request->other_species : $request->species;
             $breed = $request->breed === 'other' ? $request->other_breed : $request->breed;
+            $color = $request->color === 'other' ? $request->other_color : $request->color;
+            $personality = $request->personality === 'other' ? $request->other_personality : $request->personality;
 
             // 处理 healthStatus
             $healthStatus = $request->healthStatus ?? [];
@@ -70,11 +72,11 @@ class PetController extends Controller
                 'species' => $species,
                 'breed' => $breed,
                 'gender' => $validated['gender'],
-                'color' => $validated['color'],
+                'color' => $color,
                 'size' => $validated['size'],
                 'vaccinated' => $validated['vaccinated'],
                 'healthStatus' => $healthStatus,
-                'personality' => $validated['personality'],
+                'personality' => $personality,
                 'description' => $validated['description'],
                 'photos' => $photoPaths,
                 'videos' => $videoPaths,
@@ -235,18 +237,52 @@ class PetController extends Controller
         }
     }
 
-    public function showVerificationPage()
+    public function showVerificationPage(Request $request)
     {
         if (auth()->user()->role !== 'admin') {
             abort(403, 'Unauthorized action.');
         }
 
-        $unverifiedPets = Pet::where('verified', false)
-            ->with('user')  // 预加载用户关系
-            ->orderBy('created_at', 'desc')
-            ->get();
+        $status = $request->get('status', 'unverified');
+        $query = Pet::with('user');  // 预加载用户关系
 
-        return view('admin.petInfoVerification', compact('unverifiedPets'));
+        // 基础验证状态过滤
+        if ($status === 'verified') {
+            $query->where('verified', true);
+        } else {
+            $query->where('verified', false);
+        }
+
+        // 应用过滤条件
+        if ($request->filled('species')) {
+            if ($request->species === 'other') {
+                $query->whereNotIn('species', ['dog', 'cat', 'bird']);
+            } else {
+                $query->where('species', $request->species);
+            }
+        }
+
+        if ($request->filled('gender')) {
+            $query->where('gender', $request->gender);
+        }
+
+        if ($request->filled('size')) {
+            $query->where('size', $request->size);
+        }
+
+        if ($request->filled('vaccinated')) {
+            $query->where('vaccinated', $request->vaccinated);
+        }
+
+        $pets = $query->orderBy('created_at', 'desc')
+                      ->paginate(6)
+                      ->withQueryString(); // 保持过滤参数在分页链接中
+        
+        // Get count of unverified pets for badge
+        $unverifiedCount = Pet::where('verified', false)->count();
+        $verifiedCount = Pet::where('verified', true)->count();
+
+        return view('admin.petInfoVerification', compact('pets', 'unverifiedCount', 'verifiedCount'));
     }
 
     public function show(Pet $pet)
@@ -357,8 +393,8 @@ class PetController extends Controller
 
         // 返回成功消息
         $message = auth()->user()->role === 'customer' 
-            ? '宠物信息已更新，等待管理员审核。'
-            : '宠物信息已成功更新。';
+            ? 'Pet information has been updated and is awaiting admin approval.'
+            : 'Pet information has been successfully updated.';
 
         return redirect()->route('pets.myAdded')->with('success', $message);
     }
@@ -376,7 +412,7 @@ class PetController extends Controller
     {
         // 检查权限
         if (auth()->user()->role === 'customer' && $pet->addedBy !== auth()->id()) {
-            return redirect()->back()->with('error', '您没有权限编辑此宠物信息。');
+            return redirect()->back()->with('error', 'You do not have permission to edit this pet information.');
         }
 
         return view('common.petEdit', compact('pet'));

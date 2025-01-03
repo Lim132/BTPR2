@@ -26,7 +26,8 @@ class Pet extends Model
         'videos',
         'addedBy',
         'addedByRole',
-        'verified'
+        'verified',
+        'adopted'
     ];
 
     protected $casts = [
@@ -34,7 +35,8 @@ class Pet extends Model
         'photos' => 'array',
         'videos' => 'array',
         'vaccinated' => 'boolean',
-        'verified' => 'boolean'
+        'verified' => 'boolean',
+        'adopted' => 'boolean'
     ];
 
     public function user()

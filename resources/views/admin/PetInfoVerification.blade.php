@@ -3,19 +3,105 @@
 @section('content')
 <div class="container">
     <div class="row mb-4">
-        <div class="col">
-            <h2>Pets Pending Verification</h2>
+        <div class="col title1">
+            <h2>Pet Verification Management</h2>
         </div>
     </div>
 
-    @if($unverifiedPets->isEmpty())
+    {{-- 过滤器部分 --}}
+    <div class="card mb-4">
+        <div class="card-body">
+            <form action="{{ route('admin.pets.verification') }}" method="GET" class="row g-3">
+                <input type="hidden" name="status" value="{{ request()->get('status', 'unverified') }}">
+                
+                <div class="col-md-3">
+                    <label class="form-label words">Species</label>
+                    <select name="species" class="form-select words2">
+                        <option value="">All Species</option>
+                        <option value="dog" {{ request('species') === 'dog' ? 'selected' : '' }}>Dog</option>
+                        <option value="cat" {{ request('species') === 'cat' ? 'selected' : '' }}>Cat</option>
+                        <option value="bird" {{ request('species') === 'bird' ? 'selected' : '' }}>Bird</option>
+                        <option value="other" {{ request('species') === 'other' ? 'selected' : '' }}>Other</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label words">Gender</label>
+                    <select name="gender" class="form-select words2">
+                        <option value="">All Genders</option>
+                        <option value="male" {{ request('gender') === 'male' ? 'selected' : '' }}>Male</option>
+                        <option value="female" {{ request('gender') === 'female' ? 'selected' : '' }}>Female</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label words">Size</label>
+                    <select name="size" class="form-select words2">
+                        <option value="">All Sizes</option>
+                        <option value="small" {{ request('size') === 'small' ? 'selected' : '' }}>Small</option>
+                        <option value="medium" {{ request('size') === 'medium' ? 'selected' : '' }}>Medium</option>
+                        <option value="large" {{ request('size') === 'large' ? 'selected' : '' }}>Large</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label words">Vaccinated</label>
+                    <select name="vaccinated" class="form-select">
+                        <option value="">All</option>
+                        <option value="1" {{ request('vaccinated') === '1' ? 'selected' : '' }}>Yes</option>
+                        <option value="0" {{ request('vaccinated') === '0' ? 'selected' : '' }}>No</option>
+                    </select>
+                </div>
+
+                <div class="col-12">
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-filter me-1"></i>Apply Filters
+                        </button>
+                        <a href="{{ route('admin.pets.verification', ['status' => request()->get('status', 'unverified')]) }}" 
+                           class="btn btn-secondary">
+                            <i class="fas fa-undo me-1"></i>Reset Filters
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {{-- Add Tab Navigation --}}
+    <ul class="nav nav-tabs mb-4">
+        <li class="nav-item">
+            <a class="nav-link {{ request()->get('status', 'unverified') === 'unverified' ? 'active' : '' }}" 
+               href="{{ route('admin.pets.verification', ['status' => 'unverified']) }}">
+                Pending Verification
+                @if($unverifiedCount > 0)
+                    <span class="badge bg-danger ms-2">{{ $unverifiedCount }}</span>
+                @endif
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ request()->get('status') === 'verified' ? 'active' : '' }}" 
+               href="{{ route('admin.pets.verification', ['status' => 'verified']) }}">
+                Verified Pets
+                @if($verifiedCount > 0)
+                    <span class="badge bg-success ms-2">{{ $verifiedCount }}</span>
+                @endif
+            </a>
+        </li>
+    </ul>
+
+    @if($pets->isEmpty())
         <div class="alert alert-info">
             <i class="fas fa-info-circle me-2"></i>
-            No pets pending verification at the moment.
+            @if(request()->get('status') === 'verified')
+                No verified pets found.
+            @else
+                No pets pending verification at the moment.
+            @endif
         </div>
     @else
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            @foreach($unverifiedPets as $pet)
+            @foreach($pets as $pet)
             <div class="col">
                 <div class="card h-100">
                     @if($pet->photos && count($pet->photos) > 0)
@@ -31,7 +117,11 @@
                         <ul class="list-unstyled">
                             <li><strong>Species:</strong> {{ ucfirst($pet->species) }}</li>
                             <li><strong>Breed:</strong> {{ ucfirst($pet->breed) }}</li>
-                            <li><strong>Age:</strong> {{ $pet->age }}</li>
+                            <li><strong>Age:</strong> @if ($pet->age < 1)
+                                                        {{ __('Less than 1 year old') }}
+                                                      @else
+                                                        {{ $pet->age }}
+                                                      @endif</li>
                             <li><strong>Gender:</strong> {{ ucfirst($pet->gender) }}</li>
                             <li><strong>Health Status:</strong> 
                                 @foreach($pet->healthStatus as $status)
@@ -344,6 +434,50 @@
             </div>
             @endforeach
         </div>
+
+        {{-- Add Pagination Links --}}
+        <div class="d-flex justify-content-center mt-4">
+            {{ $pets->appends(['status' => request()->get('status', 'unverified')])->links() }}
+        </div>
+
+        {{-- JavaScript 代码移到这里 --}}
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 为每个宠物的模态框设置事件监听
+            @foreach($pets as $pet)
+                setupModalHandlers('{{ $pet->id }}');
+
+                // 为每个宠物设置健康状态复选框监听器
+                const otherCheckbox = document.getElementById('otherHealthCheckbox{{ $pet->id }}');
+                const otherInput = document.getElementById('otherHealthStatus{{ $pet->id }}');
+
+                if (otherCheckbox && otherInput) {
+                    otherCheckbox.addEventListener('change', function() {
+                        otherInput.classList.toggle('d-none', !this.checked);
+                        if (this.checked) {
+                            otherInput.focus();
+                            otherInput.required = true;
+                        } else {
+                            otherInput.required = false;
+                            otherInput.value = '';
+                        }
+                    });
+
+                    // 验证至少选择一个健康状态
+                    const form = otherCheckbox.closest('form');
+                    form.addEventListener('submit', function(e) {
+                        const checkboxes = form.querySelectorAll('.health-status-checkbox:checked');
+                        if (checkboxes.length === 0) {
+                            e.preventDefault();
+                            alert('请至少选择一个健康状态！\nPlease select at least one health status!');
+                        }
+                    });
+                }
+            @endforeach
+        });
+
+        // ... rest of the JavaScript code ...
+        </script>
     @endif
 </div>
 @endsection
@@ -351,7 +485,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // 为每个宠物的模态框设置事件监听
-    @foreach($unverifiedPets as $pet)
+    @foreach($pets as $pet)
         setupModalHandlers('{{ $pet->id }}');
     @endforeach
 
@@ -469,31 +603,4 @@ function toggleOtherInput(selectElement, otherInputElement) {
         otherInputElement.required = false;
     }
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-    const otherCheckbox = document.getElementById('otherHealthCheckbox{{ $pet->id }}');
-    const otherInput = document.getElementById('otherHealthStatus{{ $pet->id }}');
-
-    otherCheckbox.addEventListener('change', function() {
-        otherInput.classList.toggle('d-none', !this.checked);
-        if (this.checked) {
-            otherInput.focus();
-            otherInput.required = true;
-        } else {
-            otherInput.required = false;
-            otherInput.value = '';
-        }
-    });
-
-    // Validate that at least one health status is selected
-    const form = otherCheckbox.closest('form');
-    form.addEventListener('submit', function(e) {
-        const checkboxes = form.querySelectorAll('.health-status-checkbox:checked');
-        if (checkboxes.length === 0) {
-            e.preventDefault();
-            alert('请至少选择一个健康状态！\nPlease select at least one health status!');
-        }
-    });
-});
-
 </script>

@@ -46,7 +46,13 @@
                                         </small>
                                     </p>
                                     <p class="card-text">
-                                        <i class="fas fa-birthday-cake me-1"></i>{{ __('Age') }}: {{ $pet->age }}
+                                        @if($pet->age == 0)
+                                            <i class="fas fa-birthday-cake me-1"></i>{{ __('Age') }}: {{ __('Under 1 year old') }}
+                                        @elseif($pet->age == 1)
+                                            <i class="fas fa-birthday-cake me-1"></i>{{ __('Age') }}: {{ __('1 year old') }}
+                                        @else($pet->age > 1)
+                                            <i class="fas fa-birthday-cake me-1"></i>{{ __('Age') }}: {{ __($pet->age . ' years old') }}
+                                        @endif
                                         <br>
                                         <i class="fas fa-venus-mars me-1"></i>{{ __('Gender') }}: {{ __(ucfirst($pet->gender)) }}
                                     </p>
@@ -54,7 +60,7 @@
                                     <div class="mt-3">
                                         <a href="{{ route('pets.show', $pet) }}" class="btn btn-sm btn-outline-primary">
                                             <i class="fas fa-eye me-1"></i>{{ __('View Details') }}
-                                        </a>
+                                        </a> &nbsp;
                                         <a href="{{ route('pets.edit', $pet) }}" class="btn btn-sm btn-outline-secondary">
                                             <i class="fas fa-edit me-1"></i>{{ __('Edit') }}
                                         </a>
