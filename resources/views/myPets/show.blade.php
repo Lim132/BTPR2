@@ -21,7 +21,7 @@
                                 @foreach($photos as $index => $photo)
                                     <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                                         <img src="{{ Storage::url($photo) }}" 
-                                            class="d-block rounded mx-auto" 
+                                            class="d-block mx-auto" 
                                             alt="Pet Photo"
                                             style="max-height: 500px; max-width: 100%; width: auto; height: auto; object-fit: contain;">
                                     </div>
